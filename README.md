@@ -1,6 +1,6 @@
-# Terraform AWS ECS Scheduled Task
+# Terraform AWS ECS with EFS Scheduled Task
 
-A Terraform module to create a scheduled task in AWS ECS
+A Terraform module to create a scheduled task with EFS in AWS ECS
 
 ## Usage
 
@@ -14,6 +14,8 @@ module "scheduled_task" {
   container_definitions = "${file(./path/to/container-definitions.json)}"
   schedule_expression   = "cron(0 * * * ? 0)"
   cluster_arn           = "my_awesome_cluster"
+  volume_name           = "my_awesome_volume_name"
+  volume_host_path      = "/mnt/efs"
   memory                = "512"
   cpu                   = "512"
 }
@@ -53,6 +55,16 @@ The following variables can be configured:
 #### `cpu`
 
 - **Description**: The number of cpu units used by the task
+- **Default**: `none`
+
+#### `volume_name`
+
+- **Description**: Volume name used as `sourceVolume` of `mountPoints` in the container definition
+- **Default**: `none`
+
+#### `volume_host_path`
+
+- **Description**: Path of volume on container instance
 - **Default**: `none`
 
 #### `memory`

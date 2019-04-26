@@ -29,6 +29,16 @@ variable "cluster_arn" {
   description = "ARN of cluster on which to run task"
 }
 
+variable "volume_name" {
+  type        = "string"
+  description = "Name of volume being mounted"
+}
+
+variable "volume_host_path" {
+  type        = "string"
+  description = "Path of volume on container instance"
+}
+
 variable "task_count" {
   type        = "string"
   description = "Number of tasks to run"

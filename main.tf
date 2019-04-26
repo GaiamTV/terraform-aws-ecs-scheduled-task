@@ -54,6 +54,11 @@ resource "aws_ecs_task_definition" "scheduled_task" {
   task_role_arn            = "${aws_iam_role.scheduled_task_ecs.arn}"
   cpu                      = "${var.cpu}"
   memory                   = "${var.memory}"
+
+  volume {
+    name = "${var.volume_name}"
+    host_path = "${var.volume_host_path}"
+  }
 }
 
 ## Cloudwatch event
